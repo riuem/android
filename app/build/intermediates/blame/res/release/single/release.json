@@ -1,11 +1,11 @@
 [
     {
-        "merged": "E:\\zywork2018\\android\\app\\build\\intermediates\\res\\merged\\release\\drawable-land-xhdpi_screen.png.flat",
-        "source": "E:\\zywork2018\\android\\app\\src\\main\\res\\drawable-land-xhdpi\\screen.png"
-    },
-    {
         "merged": "E:\\zywork2018\\android\\app\\build\\intermediates\\res\\merged\\release\\layout_device_list.xml.flat",
         "source": "E:\\zywork2018\\android\\app\\src\\main\\res\\layout\\device_list.xml"
+    },
+    {
+        "merged": "E:\\zywork2018\\android\\app\\build\\intermediates\\res\\merged\\release\\drawable-land-xhdpi_screen.png.flat",
+        "source": "E:\\zywork2018\\android\\app\\src\\main\\res\\drawable-land-xhdpi\\screen.png"
     },
     {
         "merged": "E:\\zywork2018\\android\\app\\build\\intermediates\\res\\merged\\release\\raw_beep2.wav.flat",
