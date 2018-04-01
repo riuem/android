@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">食安溯源</string>
+    <string name="launcher_name">@string/app_name</string>
+    <string name="activity_name">@string/launcher_name</string>
+    <string name="title_paired_devices">配对记录</string>
+    <string name="title_other_devices">其他可连接设备</string>
+    <string name="none_paired">无已配对设备</string>
+    <string name="scanning">搜寻设备中...</string>
+    <string name="none_found">无其他设备</string>
+    <string name="no_paired">无已配对设备</string>
+    <string name="select_device">请选择设备</string>
+</resources>

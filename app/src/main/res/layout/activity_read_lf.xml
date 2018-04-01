@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="500dp"
+              android:layout_height="fill_parent"
+              android:background="#f6f6f6"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/connect"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="#66FF00"
+        android:gravity="center"
+        android:text="连接保险棒"
+        android:textColor="#FF6600"/>
+
+
+    <TextView
+        android:id="@+id/disconnect"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="10dp"
+        android:background="#66FF00"
+        android:gravity="center"
+        android:text="断开连接"
+        android:textColor="#FF6600"/>
+
+    <TextView
+        android:id="@+id/read"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="10dp"
+        android:background="#66FF00"
+        android:gravity="center"
+        android:text="开始读保险标"
+        android:textColor="#FF6600"/>
+
+    <TextView
+        android:id="@+id/stop_read"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="10dp"
+        android:background="#66FF00"
+        android:gravity="center"
+        android:text="停止读保险标"
+        android:textColor="#FF6600"/>
+
+</LinearLayout>
