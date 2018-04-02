@@ -6,23 +6,30 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
 import org.apache.cordova.LOG;
+import org.apache.cordova.camera.CameraLauncher;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by ZZH on 2018-03-19.
  * 更新启动器。
  */
 public class UpdateStarter {
+    public static String callBackMsg;
+    public static int code=9999;//弹出消息
+    public static Set<String> set = new HashSet<>();
+    public static Context context;
     /**
      * 传入指定容器，将异步进行更新检查，并自动升级版本。
-     *
-     * @param context
+
      */
-    public static void start(final Context context) {
+    public static void start() {
         new Thread() {
             @Override
             public void run() {
+                System.out.println("更新检查开始。。。。。。");
                 LOG.i("Trace_update","start check update");
                 String newApkFileName = "";//新版本安装文件名
                 String newVersionName = "";//新版本名
@@ -36,7 +43,7 @@ public class UpdateStarter {
                     PackageManager manager = context.getPackageManager();
                     //获取服务器版本信息。本文件对应为扫描（scan）版，在split的第二顺位。
                     //第一顺位位不带扫描版，以后其他硬件，逐步增加。
-
+                    //versionText = "7:0.0.7:AnimalTrace_0.0.7.scan.apk|7:0.0.7:AnimalTrace_0.0.7.scan.apk";//模拟
                     versionText = versionText.split("\\|")[1];
                     System.out.println("111 " + versionText);
                     String versionTemp[] = versionText.split(":");
@@ -49,15 +56,25 @@ public class UpdateStarter {
 
                     if (newVersionNumber > versionNumber ) { //服务器版本号大于本地版本号，则升级
                         LOG.i("TRACE_UPDATE_START","发现新版本");
-                        UpdateAPK.url = UpdateAPK.URLHEAD+newApkFileName;//UpdateAPK.URLHEAD : 服务器目录，已经带/，后面凭借就好。
+                        callBackMsg = Util.formatStringToUI(code,set,"发现新版本，自动升级中");
+                        CameraLauncher.awakenMe();//唤醒界面
+                        UpdateAPK.url = UpdateAPK.URLHEAD+newApkFileName;//UpdateAPK.URLHEAD : 服务器目录，已经带/，后面拼接就好。
                         context.startService(new Intent(context, UpdateAPK.class));
+
                     }else {
+                        callBackMsg = Util.formatStringToUI(code,set,"无需更新");
+                        CameraLauncher.awakenMe();
                         LOG.i("TRACE_UPDATE_CANCEL","未发现新版本");
                     }
                     LOG.i("TRACE_UPDATE_SUCCESS","新版本："+newVersionName+" 升级操作完成");//注意，此处只能说明升级操作无异常。实际成功与否，看具体升级记录
                 } catch (Exception e) {
+                    callBackMsg = Util.formatStringToUI(code,set,"检查更新失败");
+                    CameraLauncher.awakenMe();
                     LOG.e("TRACE_UPDATE_ERROR", e.getMessage());
+                    e.printStackTrace();
                 }
+
+
             }
         }.start();
     }

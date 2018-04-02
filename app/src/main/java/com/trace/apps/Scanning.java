@@ -17,6 +17,7 @@ public class Scanning extends FragmentActivity {
     public static int count = 30;
     private TextView txt_scan;
     public static boolean scan_flag = true;
+    public static String head = "扫描中";
 
 
     @Override
@@ -54,7 +55,7 @@ public class Scanning extends FragmentActivity {
                        Scanning.this.runOnUiThread(new Runnable() {
                            @Override
                            public void run() {
-                               txt_scan.setText("扫描中，剩余 " + count + "秒");
+                               txt_scan.setText(head+"，剩余 " + count + "秒");
                            }
                        });
                    }

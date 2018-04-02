@@ -67,11 +67,13 @@ import android.support.v4.content.FileProvider;
 import android.util.Base64;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.dgzrdz.mobile.lf.library.Constant;
 import com.trace.apps.ReadUHFTag;
 import com.trace.apps.Scanning;
+import com.trace.apps.UpdateStarter;
 import com.trace.apps.Util;
 import com.trace.apps.activity.DeviceListActctivity;
 import com.trace.apps.activity.ReadLfTagActivity;
@@ -154,6 +156,37 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
      * @return                  A PluginResult object with a status and message.
      */
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+        if(args.getInt(0)==98){ //98请求更新
+            String head = Scanning.head;
+            Scanning.head = "更新检查";
+            Scanning.scan_flag=true;
+            Intent scanDialog = new Intent(context, Scanning.class);
+            context.startActivity(scanDialog);
+            LOG.d("trace_update", "提醒弹出完成");
+            new Thread(){
+                @Override
+                public void run() {
+                    LOG.d("trace_update" , "检查更新");
+                    UpdateStarter.start();//更新检查
+                }
+            }.start();
+            synchronized (lockObject){
+                try {
+                    lockObject.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            //被唤醒后获取回调消息
+            Scanning.head = head;
+            String callBackMsg = UpdateStarter.callBackMsg;
+            UpdateStarter.callBackMsg = null;//清空消息
+            System.out.println("被唤醒，读取信息："+ callBackMsg);
+            callbackContext.success(callBackMsg );//回传消息给UI
+            return true;
+
+        }
+
         /*请求高频设备*/
         if(args.getInt(0) == 100) {  //100高频
             LOG.d("trace_uhf" , "准备扫描");
@@ -215,11 +248,12 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
         return false;
     }
     public static void awakenMe(){
+        Scanning.scan_flag = false;//干掉弹窗
         synchronized (lockObject){
             try {
                 lockObject.notifyAll();//暂停，等待唤醒。
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.e("awaken:" ,e.getMessage());
             }
         }
     }
