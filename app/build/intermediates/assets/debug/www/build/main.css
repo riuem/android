@@ -21144,6 +21144,35 @@ text-avatar::after {
   border-left: 5px solid #42A948;
 }
 
+page-about ion-label[fixed] {
+  -webkit-box-flex: 0;
+  width: 100px;
+  min-width: 100px;
+  max-width: 200px;
+  -webkit-flex: 0 0 100px;
+  -ms-flex: 0 0 100px;
+  flex: 0 0 100px;
+}
+
+page-about .item {
+  margin-top: 0rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-bottom: 2px soid #dedede;
+}
+
+page-about .ion-title {
+  margin-top: 0.5rem;
+}
+
+page-about .blank {
+  margin-bottom: 3rem;
+}
+
+page-about .bar-button-md {
+  font-size: 2.4rem;
+}
+
 page-certificate ion-label[fixed] {
   -webkit-box-flex: 0;
   width: 100px;
@@ -21279,6 +21308,10 @@ page-farmer .item, page-farmer .ion-row {
   font-size: 1.6rem;
 }
 
+page-farmer .item input, page-farmer .item select, page-farmer .item textarea, page-farmer .item .multi-picker-text, page-farmer .item .datetime-text, page-farmer .item .select-text {
+  color: #524f4f;
+}
+
 page-farmer .ion-title {
   margin-top: 0.5rem;
 }
@@ -21329,17 +21362,22 @@ page-livestock ion-label[fixed] {
 }
 
 page-livestock .item {
-  margin-top: 1rem;
+  margin-top: 0.5em;
   padding-left: 1rem;
   padding-right: 1rem;
+  margin-bottom: 0.5em;
+}
+
+page-livestock .item input, page-livestock .item select, page-livestock .item textarea, page-livestock .item .multi-picker-text, page-livestock .item .datetime-text, page-livestock .item .select-text {
+  color: #524f4f;
 }
 
 page-livestock .ion-title {
-  margin-top: 0.5rem;
+  margin-top: 0.5em;
 }
 
 page-livestock .blank {
-  margin-bottom: 3rem;
+  margin-bottom: 3em;
 }
 
 page-livestock .ng-valid[required], page-livestock .ng-valid.required {

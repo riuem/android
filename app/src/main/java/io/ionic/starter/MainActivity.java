@@ -21,6 +21,7 @@ package io.ionic.starter;
 
 import android.os.Bundle;
 import com.trace.apps.ReadUHFTag;
+import com.trace.apps.UpdateAPK;
 import com.trace.apps.UpdateStarter;
 import com.trace.apps.Util;
 
@@ -34,6 +35,7 @@ public class MainActivity extends CordovaActivity  {
         ReadUHFTag.context = getApplicationContext();
         Util.context = getApplicationContext();
         CameraLauncher.context = this;
+        UpdateStarter.context = getApplicationContext();
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,7 @@ public class MainActivity extends CordovaActivity  {
         }
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
-        UpdateStarter.start(getApplicationContext());//启动更新检查
+        UpdateStarter.start();//启动更新检查
     }
 
     /**
