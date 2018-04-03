@@ -184,7 +184,6 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
             System.out.println("被唤醒，读取信息："+ callBackMsg);
             callbackContext.success(callBackMsg );//回传消息给UI
             return true;
-
         }
 
         /*请求高频设备*/

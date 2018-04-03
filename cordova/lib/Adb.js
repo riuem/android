@@ -22,13 +22,17 @@ var os = require('os');
 var events = require('cordova-common').events;
 var spawn = require('cordova-common').superspawn.spawn;
 var CordovaError = require('cordova-common').CordovaError;
+
 var Adb = {};
+
 function isDevice (line) {
     return line.match(/\w+\tdevice/) && !line.match(/emulator/);
 }
+
 function isEmulator (line) {
     return line.match(/device/) && line.match(/emulator/);
 }
+
 /**
  * Lists available/connected devices and emulators
  *
